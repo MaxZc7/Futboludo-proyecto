@@ -1,0 +1,15 @@
+---
+const url = new URL(Astro.request.url);
+const pathname = url.pathname;
+
+const paths = {
+  homePath: '/',
+  meetUsPath: '/conocenos/',
+  productsPath: '/productos/',
+  contactoPath: '/contacto/',
+};
+---
+
+<header class="w-full flex justify-center items-center shadow-xl border-b-2">
+  <section class="w-full text-center bg-black text-white">Futboludo</section>
+</header>

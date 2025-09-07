@@ -1,0 +1,10 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Games from '../Games.tsx';
+---
+
+<Layout title="Futboludo">
+  <main class="bg-gray-700 w-full h-full">
+    <Games client:load />
+  </main>
+</Layout>
