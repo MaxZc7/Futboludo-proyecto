@@ -1,0 +1,10 @@
+---
+const { id } = Astro.params;
+
+import Layout from '../../../layouts/Layout.astro';
+import ImpostorMatch from '../../../components/ImpostorMatch';
+---
+
+<Layout title={`Impostor Lobby ${id}`}>
+  <ImpostorMatch client:load id={id} />
+</Layout>

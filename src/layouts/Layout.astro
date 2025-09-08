@@ -22,6 +22,36 @@ import Footer from '../components/Footer.astro';
     <slot />
 
     <Footer />
+
+    <style is:global>
+      :root {
+        background-color: black;
+      }
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: normal;
+        font-display: swap;
+        src: url('/fonts/Montserrat-Regular.woff2') format('woff2');
+      }
+
+      .textShadow {
+        text-shadow:
+          0 0 5px rgba(0, 0, 0, 0.3),
+          0 0 10px rgba(0, 0, 0, 0.7);
+      }
+      .headerBgBlur {
+        -webkit-backdrop-filter: saturate(180%) blur(5px);
+        backdrop-filter: saturate(180%) blur(5px);
+      }
+      .headerBgBlurMobile {
+        -webkit-backdrop-filter: saturate(180%) blur(5px);
+        backdrop-filter: saturate(180%) blur(20px);
+      }
+      .textGlow:hover {
+        text-shadow: 1px 1px 20px #fff;
+      }
+    </style>
   </body>
 
   <style>
