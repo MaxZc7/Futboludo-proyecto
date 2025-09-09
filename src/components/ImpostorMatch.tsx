@@ -9,9 +9,14 @@ type GameData = {
   finished_at: string | null;
 };
 
+type PlayerData = {
+  id_player: number;
+  nickname: string;
+};
+
 export default function ImpostorMatch(id: any) {
   const [gameData, setGameData] = useState<GameData | null>(null);
-
+  const [player, setPlayer] = useState<any>(null);
   const getGameData = async () => {
     try {
       const response = await fetch(`/api/getMatch/${id.id}`, {
@@ -37,8 +42,34 @@ export default function ImpostorMatch(id: any) {
     }
   };
 
+  const playerData = async () => {
+    try {
+      const response = await fetch('/api/getRandomPlayer', {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/json',
+        },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        setPlayer(data);
+      } else {
+        console.error(
+          'Error en la solicitud:',
+          response.status,
+          response.statusText
+        );
+      }
+    } catch (e) {
+      console.error('Eror al realizar la solicitud:', e);
+      throw e;
+    }
+  };
+
   useEffect(() => {
     getGameData();
+    playerData();
   }, []);
 
   return (
@@ -57,6 +88,15 @@ export default function ImpostorMatch(id: any) {
       ) : (
         <p>Cargando datos de la partida...</p>
       )}
+
+      <div class="flex flex-col justify-center items-center">
+        <img
+          src={`/fut_player_icon/${player?.name}_avatar.jpg`}
+          alt="Fut Player Image"
+          class="rounded-md"
+        />
+        <p>Jugador: {player?.name}</p>
+      </div>
     </section>
   );
 }

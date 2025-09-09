@@ -57,3 +57,11 @@ export async function getMatchById(id_match: number) {
   });
   return result;
 }
+
+export async function getRandomPlayer() {
+  const result = await client.execute({
+    sql: 'SELECT * FROM fut_players ORDER BY RANDOM() LIMIT 1',
+    args: [],
+  });
+  return result;
+}
